@@ -1,0 +1,48 @@
+{
+  "name": "react-dplayer",
+  "version": "0.0.1",
+  "description": "dplayer",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev-server": "webpack-dev-server --config ./example/example.config",
+    "start": "npm run compile; npm run devServer",
+    "prepublish": "babel ./src --out-dir ./lib",
+    "compile": "rimraf lib/* && npm run prepublish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnsylitao/react-dplayer.git"
+  },
+  "keywords": [
+    "dplayer",
+    "react-dplayer"
+  ],
+  "author": "hnsylitao@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hnsylitao/react-dplayer/issues"
+  },
+  "homepage": "https://github.com/hnsylitao/react-dplayer#readme",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "dplayer": "^1.6.0",
+    "prop-types": "^15.5.10"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "create-react-class": "^15.6.0",
+    "css-loader": "^0.28.5",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
