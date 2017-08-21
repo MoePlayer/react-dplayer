@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
 
-# react-dplayer
+# react-dplayer[Live Demo](http://dplayer.89io.com/)
 
 **React component for Dplayer** based on [DPlayer](https://github.com/DIYgod/DPlayer).
 
@@ -33,7 +33,7 @@ class Example extends Component {
 
 The package also includes an in-built example under the `/example` folder. Run the sample application by cloning project and running npm start.
 
-## [Doc](http://dplayer.js.org/docs/)
+## [Dplayer Doc](http://dplayer.js.org/docs/)
 
 ## Props
 
