@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - "5"
+  - "6"
+  - "7"
+
+notifications:
+  email: true
+
+install: npm install --dev
+
+script:
+  - npm run compile

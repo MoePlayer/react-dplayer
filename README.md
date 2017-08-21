@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/hnsylitao/react-dplayer.svg?branch=master)](https://travis-ci.org/hnsylitao/react-dplayer)
+[![Version](https://img.shields.io/npm/v/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
+[![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
+[![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
+
 # react-dplayer
 
 **React component for Dplayer** based on [DPlayer](https://github.com/DIYgod/DPlayer).
