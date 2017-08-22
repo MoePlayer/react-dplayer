@@ -1,13 +1,14 @@
 {
   "name": "react-dplayer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dplayer",
   "main": "lib/index.js",
   "scripts": {
     "dev-server": "webpack-dev-server --config ./example/example.config",
-    "start": "npm run compile; npm run devServer",
+    "start": "npm run compile; npm run dev-server",
     "prepublish": "babel ./src --out-dir ./lib",
-    "compile": "rimraf lib/* && npm run prepublish"
+    "compile": "rimraf lib/* && npm run prepublish",
+    "dist": "rimraf dist/* && atool-build --devtool=#sourcemap"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
+    "atool-build": "^1.0.2",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
@@ -36,6 +38,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "create-react-class": "^15.6.0",
     "css-loader": "^0.28.5",
+    "deep-assign": "^2.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "react": "^15.6.1",

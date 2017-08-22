@@ -57,8 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
-# lib
+# lib dist
 lib
+dist
 
 #idea
 .idea
