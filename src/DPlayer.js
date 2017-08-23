@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DPlayer from 'dplayer';
 
+const events = ['play', 'pause', 'canplay', 'playing', 'onended', 'error'];
+const capitalize = function (str) {
+  return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
+};
+
 class DPlayerComponent extends React.Component {
 
   constructor(props, context) {
@@ -13,7 +18,7 @@ class DPlayerComponent extends React.Component {
   componentDidMount() {
     const {
       autoplay, theme, loop, lang, screenshot, hotkey, preload, contextmenu, logo, volume, video, danmaku,//Props
-      onPlay, onPause, onCanplay, onPlaying, onEnded, onError, onLoad,//Events
+      onLoad,//Events
     } = this.props;
     const player = this.dp = new DPlayer({
       element: this.ele,
@@ -34,24 +39,13 @@ class DPlayerComponent extends React.Component {
     //load
     onLoad && onLoad(player);
 
-    player.on('play', () => {
-      onPlay && onPlay();
-    })
-    player.on('pause', () => {
-      onPause && onPause();
-    })
-    player.on('canplay', () => {
-      onCanplay && onCanplay();
-    })
-    player.on('playing', () => {
-      onPlaying && onPlaying();
-    })
-    player.on('ended', () => {
-      onEnded && onEnded();
-    })
-    player.on('error', () => {
-      onError && onError();
-    })
+    events.forEach(event => {
+      let funcName = 'on' + capitalize(event);
+      let callback = this.props[funcName];
+      if (callback) {
+        player.on(event, callback);
+      }
+    });
   }
 
   render() {
@@ -69,7 +63,6 @@ class DPlayerComponent extends React.Component {
                 className={wrapperClassName}
                 {...extraProps}/>;
   }
-
 }
 
 DPlayerComponent.defaultProps = {
@@ -80,7 +73,6 @@ DPlayerComponent.defaultProps = {
   screenshot: false,
   hotkey: true,
   preload: 'auto',
-  volume: 0.7,
   contextmenu: [
     {
       text: 'Author',

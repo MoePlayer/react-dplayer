@@ -45,7 +45,7 @@ class Example extends Component {
 	ReactDOM.render(React.createElement(
 	  'div',
 	  { style: { width: 800, margin: '0px auto' } },
-	  React.createElement(reactDplayer, { autoplay: false,
+	  React.createElement(ReactDPlayer, { autoplay: false,
 	    loop: false,
 	    screenshot: true,
 	    hotkey: true,
@@ -83,7 +83,7 @@ The package also includes an in-built example under the `/example` folder. Run t
 | hotkey | Boolean | true | binding hot key, including left right and Space |
 | preload | String | 'auto' | the way to load video, can be 'none' 'metadata' or 'auto' |
 | logo | String | DPlayer default | player logo, showing in top left corner |
-| volume | Number | 0.7 | player volume |
+| volume | Number | DPlayer default | player volume |
 | contextmenu | Array | DPlayer default | custom contextmenu |
 | video| Object | DPlayer default  | video.url -> video link video.pic -> video poster video.type -> video type video.quality -> video quality video.defaultQuality -> video defaultQuality|
 | danmaku| Object | DPlayer default  | video danmaku |
@@ -92,12 +92,12 @@ The package also includes an in-built example under the `/example` folder. Run t
 
 | Name | Params | Description |
 | ---- | ------ | ----------- |
-| onPlay | none | Triggered when DPlayer start play |
-| onPause | none | Triggered when DPlayer paused |
-| onCanplay | none | Triggered when enough data is available that DPlayer can play |
-| onPlaying | none | Triggered periodically when DPlayer is playing |
-| onEnded | none | Triggered when DPlayer ended playing |
-| onError | none | Triggered when an error occurs |
+| onPlay | DPlayer default | Triggered when DPlayer start play |
+| onPause | DPlayer default | Triggered when DPlayer paused |
+| onCanplay | DPlayer default | Triggered when enough data is available that DPlayer can play |
+| onPlaying | DPlayer default | Triggered periodically when DPlayer is playing |
+| onEnded | DPlayer default | Triggered when DPlayer ended playing |
+| onError | DPlayer default | Triggered when an error occurs |
 
 ## Development
 
