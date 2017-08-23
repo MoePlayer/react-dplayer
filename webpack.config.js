@@ -3,11 +3,7 @@ const path = require('path')
   , rootPath = path.resolve(__dirname)
   , srcPath = path.resolve(rootPath, 'src')
   , pkg = require('./package.json')
-  , libraryName = (function (str) {
-  return str.split("-").map(function (c, i) {
-    return i > 0 ? (c.charAt(0).toUpperCase() + c.substring(1)) : c;
-  }).join('');
-})(pkg.name)
+  , libraryName = 'ReactDPlayer'
   , webpack = require('atool-build/lib/webpack');
 
 module.exports = function (webpackConfig) {

@@ -88,7 +88,7 @@ DPlayerComponent.defaultProps = {
     },
     {
       text: 'GitHub',
-      link: 'https://github.com/hnsylitao/react-dplayer'
+      link: 'https://github.com/MoePlayer/react-dplayer'
     }
   ],
 };

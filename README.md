@@ -38,7 +38,32 @@ class Example extends Component {
 <link rel="stylesheet" href="https://unpkg.com/dplayer@1.6.0/dist/DPlayer.min.css">
 <script src="https://unpkg.com/dplayer@1.6.0/dist/DPlayer.min.js" />
 <script src="https://unpkg.com/react@15.6.1/dist/react.min.js" />
-<script src="https://unpkg.com/react-dplayer@0.0.2/dist/react-dplayer.min.js" />
+<script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.min.js" />
+<script src="https://unpkg.com/react-dplayer/dist/react-dplayer.min.js" />
+<div id="example"></div>
+<script >
+	ReactDOM.render(React.createElement(
+	  'div',
+	  { style: { width: 800, margin: '0px auto' } },
+	  React.createElement(reactDplayer, { autoplay: false,
+	    loop: false,
+	    screenshot: true,
+	    hotkey: true,
+	    logo: 'https://avatars3.githubusercontent.com/u/17537749?v=4&s=460',
+	    danmaku: {
+	      id: '9E2E3368B56CDBB4',
+	      api: 'https://api.prprpr.me/dplayer/',
+	      token: 'tokendemo',
+	      maximum: 1000,
+	      addition: ['https://api.prprpr.me/dplayer/bilibili?aid=4157142'],
+	      user: 'DIYgod'
+	    },
+	    video: {
+	      url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+	      pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
+	    } })
+	), document.getElementById('example'));
+</script>
 ```
 
 The package also includes an in-built example under the `/example` folder. Run the sample application by cloning project and running npm start.
