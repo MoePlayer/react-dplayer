@@ -1,7 +1,11 @@
 {
   "presets": [
-    "es2015",
+    "es2015-ie",
     "react",
     "stage-0"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-decorators-legacy"
   ]
 }

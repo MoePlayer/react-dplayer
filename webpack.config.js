@@ -23,7 +23,7 @@ const baseWebpackConfig = {
       amd: 'react',
     },
     [`dplayer`]: "DPlayer",
-    [`dplayer/dist/DPlayer.min.css`]: "null",
+    [`dplayer/dist/DPlayer.min.css`]: "undefined",
   },
   devtool: '#sourcemap',
   resolve: {

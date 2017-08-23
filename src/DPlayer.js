@@ -112,4 +112,4 @@ DPlayerComponent.propTypes = {
   }),
 };
 
-export default  DPlayerComponent;
+export default DPlayerComponent;
