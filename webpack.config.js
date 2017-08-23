@@ -1,16 +1,21 @@
 const path = require('path')
-  , deepAssign = require('deep-assign')
   , rootPath = path.resolve(__dirname)
   , srcPath = path.resolve(rootPath, 'src')
   , pkg = require('./package.json')
   , libraryName = 'ReactDPlayer'
-  , webpack = require('atool-build/lib/webpack');
+  , _ = require('lodash')
+  , webpack = require('webpack')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = function (webpackConfig) {
-  webpackConfig.entry = {
-    [`${pkg.name}.min`]: path.resolve(srcPath, 'index.js')
-  }
-  webpackConfig.externals = {
+const baseWebpackConfig = {
+  output: {
+    path: path.resolve(rootPath, 'dist'),
+    filename: '[name].js',
+    chunkFilename: '[name].js',
+    library: libraryName,
+    libraryTarget: 'umd'
+  },
+  externals: {
     [`react`]: {
       root: 'React',
       commonjs2: 'react',
@@ -19,38 +24,79 @@ module.exports = function (webpackConfig) {
     },
     [`dplayer`]: "DPlayer",
     [`dplayer/dist/DPlayer.min.css`]: "null",
-  };
-
-  /**
-   * remove commonjs
-   */
-  webpackConfig.plugins = webpackConfig.plugins.filter((plugin) => {
-    const ret = !(plugin instanceof webpack.optimize.CommonsChunkPlugin);
-    return ret;
-  });
-  webpackConfig.output.library = libraryName;
-  webpackConfig.output.libraryTarget = 'umd';
-  webpackConfig.plugins.push(new webpack.BannerPlugin(
-    `${ pkg.name} v${pkg.version}
+  },
+  devtool: '#sourcemap',
+  resolve: {
+    modules: ['node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
+    enforceExtension: false
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+        }]
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        })
+      }
+    ],
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      disable: false,
+      allChunks: true,
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.BannerPlugin(
+      `${ pkg.name} v${pkg.version}
 
 Copyright 2017-present, MoePlayer, Inc.
-All rights reserved.`
-  ));
-  let uncompressedWebpackConfig = deepAssign({}, webpackConfig);
-  uncompressedWebpackConfig.entry = {
-    [`${pkg.name}`]: path.resolve(srcPath, 'index.js')
-  }
-  uncompressedWebpackConfig.plugins = webpackConfig.plugins.filter((plugin) => {
-    const ret = !(plugin instanceof webpack.optimize.UglifyJsPlugin);
-    return ret;
-  });
-  uncompressedWebpackConfig.plugins = uncompressedWebpackConfig.plugins.filter((plugin) => {
-    const ret = !(plugin instanceof webpack.DefinePlugin);
-    return ret;
-  });
-  uncompressedWebpackConfig.plugins.push(new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('development'),
-  }));
-
-  return [webpackConfig, uncompressedWebpackConfig];
+All rights reserved.`)
+  ],
+};
+const createWebpackConfig = function (config) {
+  return _.assign({}, baseWebpackConfig, config)
 }
+
+const minWebpackConfig = createWebpackConfig({
+  entry: {
+    [`${pkg.name}.min`]: path.resolve(srcPath, 'index.js')
+  },
+  plugins: baseWebpackConfig.plugins.concat([
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        ascii_only: true
+      },
+      sourceMap: true,
+      comments: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+  ])
+})
+const uncompressedWebpackConfig = createWebpackConfig({
+  entry: {
+    [`${pkg.name}`]: path.resolve(srcPath, 'index.js')
+  },
+  plugins: baseWebpackConfig.plugins.concat([
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+  ])
+})
+
+module.exports = [minWebpackConfig, uncompressedWebpackConfig];
