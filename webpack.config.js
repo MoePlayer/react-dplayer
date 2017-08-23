@@ -78,7 +78,6 @@ const minWebpackConfig = createWebpackConfig({
         ascii_only: true
       },
       sourceMap: true,
-      comments: true,
       compress: {
         warnings: false
       }
