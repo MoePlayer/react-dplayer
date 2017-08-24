@@ -1,6 +1,6 @@
 {
   "name": "react-dplayer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "dplayer",
   "main": "lib/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/hnsylitao/react-dplayer#readme",
   "dependencies": {
     "classnames": "^2.2.5",
-    "dplayer": "^1.6.0",
+    "dplayer": "^1.6.1",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
