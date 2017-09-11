@@ -36,8 +36,8 @@ class Example extends Component {
 
 ### browser
 ```html
-<link rel="stylesheet" href="https://unpkg.com/dplayer@1.6.0/dist/DPlayer.min.css">
-<script src="https://unpkg.com/dplayer@1.6.0/dist/DPlayer.min.js" />
+<link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css">
+<script src="https://unpkg.com/dplayer/dist/DPlayer.min.js" />
 <script src="https://unpkg.com/react@15.6.1/dist/react.min.js" />
 <script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.min.js" />
 <script src="https://unpkg.com/react-dplayer/dist/react-dplayer.min.js" />
