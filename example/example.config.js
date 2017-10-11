@@ -7,7 +7,7 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    bundle: path.resolve(srcPath, 'example.js')
+    bundle: ["babel-polyfill", path.resolve(srcPath, 'example.js')]
   },
   devServer: {
     https: false,
