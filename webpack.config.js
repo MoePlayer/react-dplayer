@@ -5,7 +5,8 @@ const path = require('path')
   , libraryName = 'ReactDPlayer'
   , _ = require('lodash')
   , webpack = require('webpack')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin');
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
+  , UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const baseWebpackConfig = {
   output: {
@@ -69,18 +70,21 @@ const createWebpackConfig = function (config) {
 }
 
 const minWebpackConfig = createWebpackConfig({
+  mode: 'production',
   entry: {
     [`${pkg.name}.min`]: path.resolve(srcPath, 'index.js')
   },
   plugins: baseWebpackConfig.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        ascii_only: true
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        output: {
+          ascii_only: true
+        },
+        compress: {
+          warnings: false
+        }
       },
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
+      sourceMap: true
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -88,6 +92,7 @@ const minWebpackConfig = createWebpackConfig({
   ])
 })
 const uncompressedWebpackConfig = createWebpackConfig({
+  mode: 'development',
   entry: {
     [`${pkg.name}`]: path.resolve(srcPath, 'index.js')
   },

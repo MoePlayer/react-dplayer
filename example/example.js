@@ -5,7 +5,7 @@ import DPlayer from "../src";
 
 const Example = reactCreateClass({
 
-  getInitialState(){
+  getInitialState() {
     return {
       canplay: false,
       play: false,
@@ -13,50 +13,50 @@ const Example = reactCreateClass({
     };
   },
 
-  seek(){
+  seek() {
     this.dp.seek(10)
   },
 
-  play(){
+  play() {
     this.dp.play()
   },
 
-  pause(){
+  pause() {
     this.dp.pause()
   },
 
-  onLoad(dp){
+  onLoad(dp) {
     this.dp = dp;
     console.log(dp, dp.video);
   },
 
-  onCanplay(){
+  onCanplay() {
     this.setState({
       canplay: true,
     })
   },
 
-  onPlay(){
+  onPlay() {
     this.setState({
       play: true,
     })
   },
 
-  onPause(){
+  onPause() {
     this.setState({
       play: false,
     })
   },
 
-  onEnded(){
+  onEnded() {
     console.log('end')
   },
 
-  onError(){
+  onError() {
     console.log('error')
   },
 
-  onPlaying(){
+  onPlaying() {
     this.setState({
       currentTime: this.dp.video.currentTime,
     })
@@ -64,31 +64,29 @@ const Example = reactCreateClass({
 
   render() {
     return (
-      <div style={{width: 800,margin:'0px auto'}}>
-        <DPlayer autoplay={false}
-                 loop={false}
-                 screenshot={true}
-                 hotkey={true}
+      <div style={{width: 800, margin: '0px auto'}}>
+        <DPlayer loop={false}
                  logo={'https://avatars3.githubusercontent.com/u/17537749?v=4&s=460'}
+                 video={{
+                   url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.mp4',
+                   pic: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.png',
+                   thumbnails: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara_thumbnails.jpg'
+                 }}
+                 subtitl={{
+                   url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.vtt'
+                 }}
                  danmaku={{
                    id: '9E2E3368B56CDBB4',
-                   api: 'https://api.prprpr.me/dplayer/',
-                   token: 'tokendemo',
-                   maximum: 1000,
-                   addition: ['https://api.prprpr.me/dplayer/bilibili?aid=4157142'],
-                   user: 'DIYgod'
+                   api: 'https://api.prprpr.me/dplayer/'
                  }}
+                 screenshot={true}
                  onLoad={this.onLoad}
                  onPlay={this.onPlay}
                  onCanplay={this.onCanplay}
                  onPause={this.onPause}
                  onEnded={this.onEnded}
                  onError={this.onError}
-                 onPlaying={this.onPlaying}
-                 video={{
-                   url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-                   pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
-                 }}/>
+                 onPlaying={this.onPlaying}/>
         <button onClick={this.play}>play</button>
         <button onClick={this.pause}>pause</button>
         <button onClick={this.seek}>seek 10</button>
@@ -102,6 +100,6 @@ const Example = reactCreateClass({
 });
 
 ReactDOM.render(
-  <Example />,
+  <Example/>,
   document.getElementById('example')
 );

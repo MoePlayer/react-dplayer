@@ -4,7 +4,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DPlayer from 'dplayer';
 
-const events = ['play', 'pause', 'canplay', 'playing', 'onended', 'error'];
+const eventNames = [
+  'abort', 'canplay', 'canplaythrough',
+  'durationchange', 'emptied', 'ended',
+  'error', 'loadeddata', 'loadedmetadata',
+  'loadstart', 'mozaudioavailable', 'pause',
+  'play', 'playing', 'progress',
+  'ratechange', 'seeked', 'seeking',
+  'stalled', 'suspend', 'timeupdate',
+  'volumechange', 'waiting',
+];
 const capitalize = function (str) {
   return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
 };
@@ -16,63 +25,54 @@ class DPlayerComponent extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      autoplay, theme, loop, lang, screenshot, hotkey, preload, contextmenu, logo, volume, video, danmaku,//Props
-      onLoad,//Events
-    } = this.props;
-    const player = this.dp = new DPlayer({
-      element: this.ele,
-      autoplay: autoplay,
-      theme: theme,
-      loop: loop,
-      lang: lang,
-      screenshot: screenshot,
-      hotkey: hotkey,
-      preload: preload,
-      contextmenu: contextmenu,
-      logo: logo,
-      volume: volume,
-      video: video,
-      danmaku: danmaku,
-    });
-
-    //load
-    onLoad && onLoad(player);
-
-    events.forEach(event => {
-      let funcName = 'on' + capitalize(event);
-      let callback = this.props[funcName];
-      if (callback) {
-        player.on(event, callback);
+    //find otherProps
+    let {onLoad, ...otherProps} = this.props;
+    //new empty componentEvents
+    const componentEvents = [];
+    //remove otherProps event saveTo componentEvents
+    eventNames.forEach(eventName => {
+      let funcName = 'on' + capitalize(eventName);
+      let event = otherProps[funcName];
+      if (event) {
+        delete otherProps[funcName]
+        componentEvents.push({eventName, event})
       }
     });
+    //new player
+    console.log(otherProps)
+    const player = this.dp = new DPlayer({
+      ...otherProps,
+      element: this.ele
+    });
+    //run load
+    onLoad && onLoad(player);
+    //bind player events
+    componentEvents.forEach(eventObject => {
+      const {eventName, event} = eventObject;
+      player.on(eventName, event)
+    })
+  }
+
+  componentWillUnmount() {
+    //remove dplayer
+    this.dp.destroy();
   }
 
   render() {
-    const {
-      autoplay, theme, loop, lang, screenshot, hotkey, preload, contextmenu, logo, volume, video, danmaku,//Props
-      onPlay, onPause, onCanplay, onPlaying, onEnded, onError, onLoad,//Events
-      ...resetProps,
-    } = this.props;
-    const {className, ...extraProps} = resetProps;
+    const {className, style, id} = this.props;
     const wrapperClassName = classNames({
       [`dplayer`]: true,
       [`${className}`]: !!className,
     });
     return <div ref={ref => this.ele = ref}
-                className={wrapperClassName}
-                {...extraProps}/>;
+                id={id}
+                style={style}
+                className={wrapperClassName}/>;
   }
 }
 
 DPlayerComponent.defaultProps = {
-  autoplay: false,
-  theme: '#FADFA3',
-  loop: true,
-  lang: 'zh',
-  screenshot: false,
-  hotkey: true,
-  preload: 'auto',
+  lang: 'zh-cn',
   contextmenu: [
     {
       text: 'Author',
@@ -85,31 +85,14 @@ DPlayerComponent.defaultProps = {
   ],
 };
 DPlayerComponent.propTypes = {
-  autoplay: PropTypes.bool,
-  theme: PropTypes.string,
-  loop: PropTypes.bool,
   lang: PropTypes.string,
-  screenshot: PropTypes.bool,
-  hotkey: PropTypes.bool,
-  preload: PropTypes.string,
-  logo: PropTypes.string,
-  volume: PropTypes.number,
-  contextmenu: PropTypes.array,
   video: PropTypes.shape({
     url: PropTypes.string,
     pic: PropTypes.string,
     type: PropTypes.string,
     quality: PropTypes.array,
     defaultQuality: PropTypes.number,
-  }).isRequired,
-  danmaku: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    api: PropTypes.string,
-    token: PropTypes.string,
-    maximum: PropTypes.number,
-    addition: PropTypes.array,
-    user: PropTypes.string,
-  }),
+  }).isRequired
 };
 
 export default DPlayerComponent;

@@ -6,6 +6,7 @@ const path = require('path')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: {
     bundle: ["babel-polyfill", path.resolve(srcPath, 'example.js')]
   },
