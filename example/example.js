@@ -67,17 +67,9 @@ const Example = reactCreateClass({
       <div style={{width: 800, margin: '0px auto'}}>
         <DPlayer loop={false}
                  logo={'https://avatars3.githubusercontent.com/u/17537749?v=4&s=460'}
-                 video={{
-                   url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.mp4',
-                   pic: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.png',
-                   thumbnails: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara_thumbnails.jpg'
-                 }}
-                 subtitl={{
-                   url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.vtt'
-                 }}
-                 danmaku={{
-                   id: '9E2E3368B56CDBB4',
-                   api: 'https://api.prprpr.me/dplayer/'
+                 video={ {
+                   url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+                   pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
                  }}
                  screenshot={true}
                  onLoad={this.onLoad}
