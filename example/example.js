@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reactCreateClass from 'create-react-class';
-import DPlayer from "../src";
+import DPlayer from "../lib";
 
 const Example = reactCreateClass({
 

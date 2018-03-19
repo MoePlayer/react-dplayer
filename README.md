@@ -3,14 +3,14 @@
 [![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
 
-# react-dplayer[Live Demo](http://dplayer.89io.com/) (V1.22.2)
+# react-dplayer [demo](http://dplayer.89io.com/)
 
-**React component for Dplayer** based on [DPlayer](https://github.com/DIYgod/DPlayer).
+**React component for Dplayer** based on [DPlayer(V1.22.2)](https://github.com/DIYgod/DPlayer).
 
 ## Install
 
 ```bash
-npm install react-dplayer -save
+npm install react-dplayer -D
 ```
 
 ## Usage
@@ -20,15 +20,9 @@ npm install react-dplayer -save
 import Dplayer from "react-dplayer";
 
 class Example extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <DPlayer video={{
-                    url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-                   }}/>
+            <DPlayer video={{url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'}}/>
         )
     }
 }
@@ -46,10 +40,7 @@ class Example extends Component {
 	ReactDOM.render(React.createElement(
 	  'div',
 	  { style: { width: 800, margin: '0px auto' } },
-	  React.createElement(ReactDPlayer, {
-	    video: {
-	      url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'
-	    } })
+	  React.createElement(ReactDPlayer, {video: {url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'} })
 	), document.getElementById('example'));
 </script>
 ```
@@ -63,7 +54,7 @@ The package also includes an in-built example under the `/example` folder. Run t
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| allProps | Object | default | [read doc](http://dplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0) |
+| allProps | Object | -- | [read doc](http://dplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0) |
 
 ## Events
 
