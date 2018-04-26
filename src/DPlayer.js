@@ -39,7 +39,6 @@ class DPlayerComponent extends React.Component {
       }
     });
     //new player
-    console.log(otherProps)
     const player = this.dp = new DPlayer({
       ...otherProps,
       element: this.ele
@@ -51,11 +50,6 @@ class DPlayerComponent extends React.Component {
       const {eventName, event} = eventObject;
       player.on(eventName, event)
     })
-  }
-
-  componentWillUnmount() {
-    //remove dplayer
-    this.dp.destroy();
   }
 
   render() {

@@ -1,6 +1,6 @@
 {
   "name": "react-dplayer",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "dplayer",
   "main": "lib/index.js",
   "scripts": {
