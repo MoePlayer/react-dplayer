@@ -1,6 +1,6 @@
 {
   "name": "react-dplayer",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "dplayer",
   "main": "lib/index.js",
   "scripts": {
@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/hnsylitao/react-dplayer#readme",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "dplayer": "^1.22.2",
-    "prop-types": "^15.6.1"
+    "classnames": "^2.2.6",
+    "dplayer": "^1.24.0",
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
