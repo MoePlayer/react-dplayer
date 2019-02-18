@@ -17,7 +17,7 @@ npm install react-dplayer -D
 
 ### commonjs
 ```js
-import Dplayer from "react-dplayer";
+import DPlayer from "react-dplayer";
 
 class Example extends Component {
     render() {
