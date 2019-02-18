@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
 
-# react-dplayer [demo](http://dplayer.89io.com/)
+# react-dplayer [demo](https://codesandbox.io/s/1rkx7lyrml)
 
 **React component for Dplayer** based on [DPlayer(V1.22.2)](https://github.com/DIYgod/DPlayer).
 
