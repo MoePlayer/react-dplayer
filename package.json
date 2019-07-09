@@ -1,8 +1,9 @@
 {
   "name": "react-dplayer",
-  "version": "0.3.0",
+  "version": "0.3.3",
   "description": "dplayer",
   "main": "lib/index.js",
+  "types": "./react-dplayer.d.ts",
   "scripts": {
     "dev-server": "webpack-dev-server --config ./example/example.config",
     "start": "npm run compile && npm run dev-server",

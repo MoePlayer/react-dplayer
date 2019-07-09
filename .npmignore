@@ -1,3 +1,4 @@
 *
 !lib/*
 !dist/*
+!react-dplayer.d.ts

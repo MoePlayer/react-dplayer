@@ -5,7 +5,7 @@
 
 # react-dplayer [demo](https://codesandbox.io/s/1rkx7lyrml)
 
-**React component for Dplayer** based on [DPlayer(V1.22.2)](https://github.com/DIYgod/DPlayer).
+**React component for Dplayer** based on [DPlayer(V1.25.0)](https://github.com/DIYgod/DPlayer).
 
 ## Install
 
