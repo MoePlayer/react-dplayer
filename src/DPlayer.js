@@ -1,22 +1,32 @@
 import 'dplayer/dist/DPlayer.min.css';
 import React from "react";
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import omit from 'omit.js';
 import DPlayer from 'dplayer';
 
-const eventNames = [
-  'abort', 'canplay', 'canplaythrough',
-  'durationchange', 'emptied', 'ended',
-  'error', 'loadeddata', 'loadedmetadata',
-  'loadstart', 'mozaudioavailable', 'pause',
-  'play', 'playing', 'progress',
-  'ratechange', 'seeked', 'seeking',
-  'stalled', 'suspend', 'timeupdate',
-  'volumechange', 'waiting',
+const events = [
+  "abort", "canplay", "canplaythrough",
+  "durationchange", "emptied", "ended",
+  "error", "loadeddata", "loadedmetadata",
+  "loadstart", "mozaudioavailable", "pause",
+  "play", "playing", "progress", "ratechange",
+  "seeked", "seeking", "stalled", "suspend",
+  "timeupdate", "volumechange", "waiting",
+  "screenshot", "thumbnails_show", "thumbnails_hide",
+  "danmaku_show", "danmaku_hide", "danmaku_clear",
+  "danmaku_loaded", "danmaku_send", "danmaku_opacity",
+  "contextmenu_show", "contextmenu_hide", "notice_show",
+  "notice_hide", "quality_start", "quality_end",
+  "destroy", "resize", "fullscreen", "fullscreen_cancel",
+  "subtitle_show", "subtitle_hide", "subtitle_change"
 ];
 const capitalize = function (str) {
   return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
 };
+const capitalizeEventName = function (str) {
+  return str.split('_').map(capitalize).join('');
+};
+const eventsProps = events.map(eventName => ({ eventName, prop: `on${capitalizeEventName(eventName)}` }))
 
 class DPlayerComponent extends React.Component {
 
@@ -25,68 +35,43 @@ class DPlayerComponent extends React.Component {
   }
 
   componentDidMount() {
-    //find otherProps
-    let {onLoad, ...otherProps} = this.props;
-    //new empty componentEvents
-    const componentEvents = [];
-    //remove otherProps event saveTo componentEvents
-    eventNames.forEach(eventName => {
-      let funcName = 'on' + capitalize(eventName);
-      let event = otherProps[funcName];
-      if (event) {
-        delete otherProps[funcName]
-        componentEvents.push({eventName, event})
-      }
-    });
+    let { onLoad, options } = this.props;
     //new player
     const player = this.dp = new DPlayer({
-      ...otherProps,
-      element: this.ele
+      ...Object.assign({}, {
+        lang: 'zh-cn',
+        contextmenu: [
+          {
+            text: 'Author',
+            link: 'https://github.com/hnsylitao'
+          },
+          {
+            text: 'GitHub',
+            link: 'https://github.com/MoePlayer/react-dplayer'
+          }
+        ],
+      }, options),
+      container: this.container
     });
     //run load
     onLoad && onLoad(player);
     //bind player events
-    componentEvents.forEach(eventObject => {
-      const {eventName, event} = eventObject;
-      player.on(eventName, event)
+    eventsProps.forEach(({ eventName, prop }) => {
+      if (prop in this.props) {
+        player.on(eventName, this.props[prop])
+      }
     })
   }
 
   render() {
-    const {className, style, id} = this.props;
+    const { className, ...otherProps } = this.props;
+    const resetProps = omit(otherProps, ['options', 'onLoad', ...eventsProps.map(ev => ev.prop)])
     const wrapperClassName = classNames({
       [`dplayer`]: true,
       [`${className}`]: !!className,
     });
-    return <div ref={ref => this.ele = ref}
-                id={id}
-                style={style}
-                className={wrapperClassName}/>;
+    return <div ref={ref => this.container = ref} className={wrapperClassName} {...resetProps} />;
   }
 }
-
-DPlayerComponent.defaultProps = {
-  lang: 'zh-cn',
-  contextmenu: [
-    {
-      text: 'Author',
-      link: 'http://89io.com'
-    },
-    {
-      text: 'GitHub',
-      link: 'https://github.com/MoePlayer/react-dplayer'
-    }
-  ],
-};
-DPlayerComponent.propTypes = {
-  lang: PropTypes.string,
-  video: PropTypes.shape({
-    url: PropTypes.string,
-    pic: PropTypes.string,
-    type: PropTypes.string,
-    quality: PropTypes.array,
-    defaultQuality: PropTypes.number,
-  }).isRequired
-};
 
 export default DPlayerComponent;

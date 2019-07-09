@@ -22,7 +22,11 @@ import DPlayer from "react-dplayer";
 class Example extends Component {
     render() {
         return (
-            <DPlayer video={{url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'}}/>
+            <DPlayer
+                options={{
+                    video:{url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'}
+                }}
+                />
         )
     }
 }
@@ -32,15 +36,15 @@ class Example extends Component {
 ```html
 <link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css">
 <script src="https://unpkg.com/dplayer/dist/DPlayer.min.js" />
-<script src="https://unpkg.com/react@15.6.1/dist/react.min.js" />
-<script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.min.js" />
+<script src="https://unpkg.com/react/dist/react.min.js" />
+<script src="https://unpkg.com/react-dom/dist/react-dom.min.js" />
 <script src="https://unpkg.com/react-dplayer/dist/react-dplayer.min.js" />
 <div id="example"></div>
 <script >
 	ReactDOM.render(React.createElement(
 	  'div',
 	  { style: { width: 800, margin: '0px auto' } },
-	  React.createElement(ReactDPlayer, {video: {url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'} })
+	  React.createElement(ReactDPlayer, {options:{video: {url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4'} }})
 	), document.getElementById('example'));
 </script>
 ```
@@ -51,16 +55,17 @@ The package also includes an in-built example under the `/example` folder. Run t
 
 ## Props
 
-
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| allProps | Object | -- | [read doc](http://dplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0) |
+| options | Object | -- | [read doc](http://dplayer.js.org/guide.html#options) |
 
 ## Events
 
+> `camel-case rule` example play as onPlay
+
 | Name | Params | Description |
 | ---- | ------ | ----------- |
-| allEvent | default | [read doc](http://dplayer.js.org/#/zh-Hans/?id=%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A)  |
+| allEvent | default | [read doc](http://dplayer.js.org/guide.html#event-binding)  |
 
 ## Development
 

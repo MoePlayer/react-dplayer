@@ -64,21 +64,25 @@ const Example = reactCreateClass({
 
   render() {
     return (
-      <div style={{width: 800, margin: '0px auto'}}>
-        <DPlayer loop={false}
-                 logo={'https://avatars3.githubusercontent.com/u/17537749?v=4&s=460'}
-                 video={ {
-                   url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-                   pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
-                 }}
-                 screenshot={true}
-                 onLoad={this.onLoad}
-                 onPlay={this.onPlay}
-                 onCanplay={this.onCanplay}
-                 onPause={this.onPause}
-                 onEnded={this.onEnded}
-                 onError={this.onError}
-                 onPlaying={this.onPlaying}/>
+      <div style={{ width: 800, margin: '0px auto' }}>
+        <DPlayer
+          options={{
+            loop: false,
+            logo: 'https://avatars3.githubusercontent.com/u/17537749?v=4&s=460',
+            video: {
+              url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+              pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
+            },
+            screenshot: true,
+          }}
+          onLoad={this.onLoad}
+          onPlay={this.onPlay}
+          onCanplay={this.onCanplay}
+          onPause={this.onPause}
+          onEnded={this.onEnded}
+          onError={this.onError}
+          onPlaying={this.onPlaying}
+        />
         <button onClick={this.play}>play</button>
         <button onClick={this.pause}>pause</button>
         <button onClick={this.seek}>seek 10</button>
@@ -92,6 +96,6 @@ const Example = reactCreateClass({
 });
 
 ReactDOM.render(
-  <Example/>,
+  <Example />,
   document.getElementById('example')
 );
