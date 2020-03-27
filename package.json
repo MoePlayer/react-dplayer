@@ -5,26 +5,23 @@
   "main": "lib/index.js",
   "types": "./react-dplayer.d.ts",
   "scripts": {
-    "dev-server": "webpack-dev-server --config ./example/example.config",
-    "start": "npm run compile && npm run dev-server",
-    "prepublish": "babel ./src --out-dir ./lib",
-    "compile": "rimraf lib/* && npm run prepublish",
+    "compile": "rimraf lib/* && babel ./src --out-dir ./lib",
     "dist": "rimraf dist/* && webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hnsylitao/react-dplayer.git"
+    "url": "git+https://github.com/wubocong/react-dplayer.git"
   },
   "keywords": [
     "dplayer",
     "react-dplayer"
   ],
-  "author": "hnsylitao@gmail.com",
-  "license": "ISC",
+  "author": "Warrior!",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hnsylitao/react-dplayer/issues"
+    "url": "https://github.com/wubocong/react-dplayer/issues"
   },
-  "homepage": "https://github.com/hnsylitao/react-dplayer#readme",
+  "homepage": "https://github.com/wubocong/react-dplayer#readme",
   "dependencies": {
     "@types/dplayer": "^1.25.0",
     "classnames": "^2.2.6",
@@ -33,26 +30,19 @@
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015-ie": "^6.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
     "create-react-class": "^15.6.3",
-    "css-loader": "^3.2.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rimraf": "^3.0.0",
-    "style-loader": "^1.0.0",
-    "uglifyjs-webpack-plugin": "^1.2.3",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-cli": "^3.3.9"
   }
 }

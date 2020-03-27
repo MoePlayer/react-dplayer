@@ -1,11 +1,13 @@
 {
   "presets": [
-    "es2015-ie",
-    "react",
-    "stage-0"
-  ],
-  "plugins": [
-    "add-module-exports",
-    "transform-decorators-legacy"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": 9
+        }
+      }
+    ],
+    "@babel/preset-react"
   ]
 }
