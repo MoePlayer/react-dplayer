@@ -72,8 +72,8 @@ The package also includes an in-built example under the `/example` folder. Run t
 
 | Name | Params | Description |
 | ---- | ------ | ----------- |
-| allEvent | default | [read doc](http://dplayer.js.org/guide.html#event-binding)  |
-
+| allEvent(in camelCase) | default | [read doc](http://dplayer.js.org/guide.html#event-binding)  |
+| onLoad | player | called when the componentDidMount or componentDidUpdate triggered 
 ## Development
 
 - `npm run start`: Run example in development mode
