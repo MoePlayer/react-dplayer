@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
 
-# react-dplayer [demo](https://codesandbox.io/s/1rkx7lyrml)
+# react-dplayer [demo](https://codesandbox.io/s/react-dplayer-demo-i61n5)
 
 # Gitpod
 
@@ -11,7 +11,7 @@ Open the project in Gitpod (free online dev environment for GitHub) and start co
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/MoePlayer/react-dplayer)
 
-**React component for Dplayer** based on [DPlayer(V1.25.0)](https://github.com/DIYgod/DPlayer).
+**React component for Dplayer** based on [DPlayer(V1.25.1)](https://github.com/DIYgod/DPlayer).
 
 ## Install
 
