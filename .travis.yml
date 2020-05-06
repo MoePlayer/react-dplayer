@@ -9,5 +9,5 @@ notifications:
 install: yarn install
 
 script:
-  - npm run compile
-  - npm run dist
+  - yarn compile
+  - yarn dist
