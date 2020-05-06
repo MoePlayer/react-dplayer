@@ -1,12 +1,12 @@
-const path = require('path')
-  , rootPath = path.resolve(__dirname)
-  , srcPath = path.resolve(rootPath, 'src')
-  , pkg = require('./package.json')
-  , libraryName = 'ReactDPlayer'
-  , _ = require('lodash')
-  , webpack = require('webpack')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  , UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const rootPath = process.cwd();
+const srcPath = path.resolve(rootPath, 'src');
+const pkg = require('./package.json');
+const libraryName = 'ReactDPlayer';
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const baseWebpackConfig = {
   output: {
@@ -14,7 +14,7 @@ const baseWebpackConfig = {
     filename: '[name].js',
     chunkFilename: '[name].js',
     library: libraryName,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   externals: {
     [`react`]: {
@@ -23,84 +23,99 @@ const baseWebpackConfig = {
       commonjs: 'react',
       amd: 'react',
     },
-    [`dplayer`]: "DPlayer",
-    [`dplayer/dist/DPlayer.min.css`]: "undefined",
+    [`dplayer`]: 'DPlayer',
   },
   devtool: '#sourcemap',
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.json'],
-    enforceExtension: false
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-        }]
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              configFile: path.resolve(rootPath, 'babelrc/default/.babelrc'),
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        })
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
-      disable: false,
-      allChunks: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.BannerPlugin(
-      `${ pkg.name} v${pkg.version}
+      `${pkg.name} v${pkg.version}
 
 Copyright 2017-present, MoePlayer, Inc.
-All rights reserved.`)
+All rights reserved.`,
+    ),
   ],
 };
+
 const createWebpackConfig = function (config) {
-  return _.assign({}, baseWebpackConfig, config)
-}
+  return merge(baseWebpackConfig, config);
+};
 
 const minWebpackConfig = createWebpackConfig({
   mode: 'production',
   entry: {
-    [`${pkg.name}.min`]: path.resolve(srcPath, 'index.js')
+    [`${pkg.name}.min`]: path.resolve(srcPath, 'index.js'),
   },
-  plugins: baseWebpackConfig.plugins.concat([
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        output: {
-          ascii_only: true
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          warnings: false,
+          output: {
+            ascii_only: true,
+          },
         },
-        compress: {
-          warnings: false
-        }
-      },
-      sourceMap: true
-    }),
+        sourceMap: true,
+      }),
+    ],
+  },
+  plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-  ])
-})
+  ],
+});
+
 const uncompressedWebpackConfig = createWebpackConfig({
   mode: 'development',
   entry: {
-    [`${pkg.name}`]: path.resolve(srcPath, 'index.js')
+    [`${pkg.name}`]: path.resolve(srcPath, 'index.js'),
   },
-  plugins: baseWebpackConfig.plugins.concat([
+  plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-  ])
-})
+  ],
+});
 
 module.exports = [minWebpackConfig, uncompressedWebpackConfig];

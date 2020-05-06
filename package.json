@@ -1,58 +1,61 @@
 {
   "name": "react-dplayer",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "dplayer",
   "main": "lib/index.js",
   "types": "./react-dplayer.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@types/dplayer": "^1.25.0",
+    "clsx": "^1.1.0",
+    "dplayer": "^1.25.1",
+    "omit.js": "^1.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "create-react-class": "^15.6.3",
+    "html-webpack-plugin": "^4.3.0",
+    "lodash": "^4.17.15",
+    "mini-css-extract-plugin": "^0.9.0",
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "rimraf": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
+  },
+  "peerDependencies": {
+    "react": "^16.x"
+  },
   "scripts": {
     "dev-server": "webpack-dev-server --config ./example/example.config",
     "start": "npm run compile && npm run dev-server",
-    "prepublish": "babel ./src --out-dir ./lib",
-    "compile": "rimraf lib/* && npm run prepublish",
+    "prepublish": "npm run prepublish:cjs && npm run prepublish:esm",
+    "prepublish:esm": "babel ./src --out-dir ./es --config-file ./babelrc/esm/.babelrc",
+    "prepublish:cjs": "babel ./src --out-dir ./lib --config-file ./babelrc/cjs/.babelrc",
+    "compile": "rimraf lib/* && rimraf es/* && npm run prepublish",
     "dist": "rimraf dist/* && webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hnsylitao/react-dplayer.git"
+    "url": "git+https://github.com/MoePlayer/react-dplayer.git"
   },
-  "keywords": [
-    "dplayer",
-    "react-dplayer"
-  ],
   "author": "hnsylitao@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hnsylitao/react-dplayer/issues"
+    "url": "https://github.com/MoePlayer/react-dplayer/issues"
   },
-  "homepage": "https://github.com/hnsylitao/react-dplayer#readme",
-  "dependencies": {
-    "@types/dplayer": "^1.25.0",
-    "classnames": "^2.2.6",
-    "dplayer": "^1.25.0",
-    "omit.js": "^1.0.2",
-    "prop-types": "^15.6.2"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015-ie": "^6.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "create-react-class": "^15.6.3",
-    "css-loader": "^3.2.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "html-webpack-plugin": "^4.3.0",
-    "lodash": "^4.17.11",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "rimraf": "^3.0.0",
-    "style-loader": "^1.0.0",
-    "uglifyjs-webpack-plugin": "^1.2.3",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.7.2"
-  }
+  "homepage": "https://github.com/MoePlayer/react-dplayer#readme"
 }

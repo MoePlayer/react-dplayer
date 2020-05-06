@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": "cjs"
+    }],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-modules-commonjs", {
+      "lazy": true
+    }]
+  ]
+}

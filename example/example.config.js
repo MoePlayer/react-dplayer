@@ -1,14 +1,14 @@
-const path = require('path')
-  , rootPath = path.resolve(__dirname, '../')
-  , srcPath = path.resolve(rootPath, 'example')
-  , webpack = require('webpack')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  , HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const rootPath = process.cwd();
+const srcPath = path.resolve(rootPath, 'example');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: {
-    bundle: ["babel-polyfill", path.resolve(srcPath, 'example.js')]
+    bundle: [path.resolve(srcPath, 'example.js')],
   },
   devServer: {
     https: false,
@@ -21,42 +21,54 @@ module.exports = {
     noInfo: true,
     quiet: false,
     compress: false,
-    stats: {colors: true},
+    stats: { colors: true },
   },
   output: {
     path: path.resolve(srcPath, '__BUILD__'),
     filename: '[name].js',
-    publicPath: ''
+    publicPath: '',
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
   },
   devtool: 'cheap-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(srcPath, 'index.html')
+      template: path.resolve(srcPath, 'index.html'),
     }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
-      disable: false,
-      allChunks: true,
-    })
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-        }]
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              configFile: path.resolve(rootPath, 'babelrc/default/.babelrc'),
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        })
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
     ],
-  }
-}
+  },
+};

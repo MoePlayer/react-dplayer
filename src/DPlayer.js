@@ -1,6 +1,5 @@
-import 'dplayer/dist/DPlayer.min.css';
 import React from "react";
-import classNames from 'classnames';
+import clsx from 'clsx';
 import omit from 'omit.js';
 import DPlayer from 'dplayer';
 
@@ -66,7 +65,7 @@ class DPlayerComponent extends React.Component {
   render() {
     const { className, ...otherProps } = this.props;
     const resetProps = omit(otherProps, ['options', 'onLoad', ...eventsProps.map(ev => ev.prop)])
-    const wrapperClassName = classNames({
+    const wrapperClassName = clsx({
       [`dplayer`]: true,
       [`${className}`]: !!className,
     });

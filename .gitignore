@@ -59,6 +59,7 @@ typings/
 
 # lib dist
 lib
+es
 dist
 
 #idea
