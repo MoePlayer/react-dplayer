@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/dt/react-dplayer.svg?style=flat)](https://www.npmjs.com/package/react-dplayer)
 [![LICENSE](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/hnsylitao/react-dplayer/blob/master/LICENSE)
 
-# react-dplayer [demo](https://codesandbox.io/s/react-dplayer-demo-i61n5)
+# react-dplayer [demo](https://codesandbox.io/s/react-dplayer-demo-i61n5) [next demo](https://codesandbox.io/s/next-react-dplayer-7frjk)
 
 # Gitpod
 
