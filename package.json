@@ -16,7 +16,7 @@
     "@types/dplayer": "^1.25.0",
     "clsx": "^1.1.0",
     "dplayer": "^1.25.1",
-    "omit.js": "^1.0.2"
+    "omit.js": "^2.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
