@@ -4,7 +4,7 @@ const srcPath = path.resolve(rootPath, 'src');
 const pkg = require('./package.json');
 const libraryName = 'ReactDPlayer';
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
