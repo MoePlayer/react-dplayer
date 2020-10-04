@@ -11,6 +11,7 @@ module.exports = {
     bundle: [path.resolve(srcPath, 'example.js')],
   },
   devServer: {
+    open: true,
     https: false,
     disableHostCheck: true,
     contentBase: srcPath,

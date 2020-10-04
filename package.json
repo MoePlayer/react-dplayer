@@ -1,6 +1,6 @@
 {
   "name": "react-dplayer",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "dplayer",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@types/dplayer": "^1.25.0",
     "clsx": "^1.1.0",
-    "dplayer": "^1.25.1",
+    "dplayer": "^1.26.0",
     "omit.js": "^2.0.2"
   },
   "devDependencies": {
