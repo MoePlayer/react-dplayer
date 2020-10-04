@@ -11,7 +11,7 @@ Open the project in Gitpod (free online dev environment for GitHub) and start co
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/MoePlayer/react-dplayer)
 
-**React component for Dplayer** based on [DPlayer(V1.25.1)](https://github.com/DIYgod/DPlayer).
+**React component for Dplayer** based on [DPlayer(V1.26.0)](https://github.com/DIYgod/DPlayer).
 
 ## Install
 
