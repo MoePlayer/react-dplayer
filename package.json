@@ -29,8 +29,8 @@
     "html-webpack-plugin": "^4.3.0",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^1.0.0",
-    "react": "^16.x",
-    "react-dom": "^16.x",
+    "react": "^17.x",
+    "react-dom": "^17.x",
     "rimraf": "^3.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
@@ -39,7 +39,7 @@
     "webpack-merge": "^5.1.4"
   },
   "peerDependencies": {
-    "react": "^16.x"
+    "react": "^17.x"
   },
   "scripts": {
     "dev-server": "webpack-dev-server --config ./example/example.config",
